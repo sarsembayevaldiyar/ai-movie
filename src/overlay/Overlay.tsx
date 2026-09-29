@@ -155,24 +155,24 @@ const Theses: React.FC<{t: number}> = ({t}) => {
   );
 };
 
+// Goals: one narrow column (number over label) so the camera's move into the
+// finale, which slides the planet left from 74 s, never reaches the text.
 const Goals: React.FC<{t: number}> = ({t}) => {
   const {t6} = TEXT;
   const items: [string, string][] = [
     ['10\u00a0000', 'ИИ-талантов'],
     ['3', 'единорога'],
-    ['$2\u00a0млрд', 'экспорта технологий в год'],
+    ['$2\u00a0млрд', 'экспорта технологий в\u00a0год'],
   ];
   return (
-    <div style={{position: 'absolute', left: MARGIN_X, bottom: MARGIN_B, display: 'flex', flexDirection: 'column', gap: 26}}>
+    <div style={{position: 'absolute', left: MARGIN_X, bottom: MARGIN_B, display: 'flex', flexDirection: 'column', gap: 30, width: 420}}>
       <Eyebrow t={t} start={t6.in + 0.1} end={t6.out} color={PAIRS.blue.light}>Цели к 2030 году</Eyebrow>
       {items.map(([num, label], i) => {
         const s = t6.in + 0.35 + i * 0.7;
         return (
-          <div key={num} style={{display: 'flex', alignItems: 'baseline', gap: 28}}>
-            <div style={{width: 380}}>
-              <Headline t={t} start={s} end={t6.out} size={96}>{num}</Headline>
-            </div>
-            <Lead t={t} start={s + 0.2} end={t6.out} size={34}>{label}</Lead>
+          <div key={num} style={{display: 'flex', flexDirection: 'column', gap: 6}}>
+            <Headline t={t} start={s} end={t6.out} size={96}>{num}</Headline>
+            <Lead t={t} start={s + 0.2} end={t6.out} size={32}>{label}</Lead>
           </div>
         );
       })}

@@ -88,7 +88,9 @@ const makeStarPoints = (count: number, seed: number, atInfinity: boolean, radius
     fragmentShader: starFragment,
     transparent: true,
     blending: THREE.AdditiveBlending,
-    depthTest: !atInfinity,
+    // Transparent objects draw after the opaque Earth: the depth test keeps the
+    // stars behind the planet.
+    depthTest: true,
     depthWrite: false,
   });
   const pts = new THREE.Points(g, mat);
@@ -137,7 +139,7 @@ export const createSky = (nebulaTex: THREE.Texture) => {
         }
       `,
       side: THREE.BackSide,
-      depthTest: false,
+      depthTest: true,
       depthWrite: false,
       transparent: true,
       blending: THREE.AdditiveBlending,

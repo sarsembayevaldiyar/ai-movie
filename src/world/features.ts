@@ -386,14 +386,16 @@ export const createFeatures = () => {
   });
   trajectories.forEach((l) => group.add(l));
 
-  // Orbits: 2 in the sunrise (sky pair), 3 "goals" (sunset pair), 2 in the finale (sky).
+  // Orbits (sky pair): 2 in the sunrise, 3 "goals" with satellites, 2 in the finale.
   const mkOrbit = (radius: number, normal: THREE.Vector3, phase: number, pair: {light: string; dark: string}, width: number) => {
     const o = orbitPoints(radius, normal, phase);
     const line = makeLine(o.pts, {light: pair.light, dark: pair.dark, widthPx: width, glowPx: 3, glowGain: 0.22, tail: 0.75, headBoost: 1.5}, true);
     return {...o, line, radius, phase};
   };
   const sunriseOrbits = [
-    mkOrbit(1.22, new THREE.Vector3(0.3, 1, 0.25), 0.4, PAIRS.sky, 1.9),
+    // Normal chosen so the ring stays ~70 deg inclined to the view over 12-21 s
+    // (never edge-on, where it would read as a straight scratch across the planet).
+    mkOrbit(1.22, new THREE.Vector3(-0.6, 0.49, 0.64), 0.4, PAIRS.sky, 1.9),
     mkOrbit(1.36, new THREE.Vector3(-0.55, 1, -0.2), 2.1, PAIRS.sky, 1.9),
   ];
   const goalOrbits = [

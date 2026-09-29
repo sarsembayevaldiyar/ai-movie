@@ -22,7 +22,7 @@ const loadTexture = (renderer: THREE.WebGLRenderer, path: string, srgb: boolean,
       staticFile(path),
       (tex) => {
         tex.colorSpace = srgb ? THREE.SRGBColorSpace : THREE.NoColorSpace;
-        tex.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+        tex.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
         tex.generateMipmaps = true;
         tex.minFilter = THREE.LinearMipmapLinearFilter;
         tex.magFilter = THREE.LinearFilter;
@@ -127,7 +127,11 @@ export const makeEarthWorld = (opts: WorldOptions = {}): WorldFactory => (render
       eu.kzDim.value = envelope(t, 28, 76, 3, 3) * 0.6;
       const alt = camera.position.length() - 1;
       eu.moonGain.value = 0.0025 + 0.0095 * THREE.MathUtils.smoothstep(alt, 0.05, 0.6);
-      eu.lightsGain.value = 3.0 + 1.5 * envelope(t, SCENES.kazakhstan.start, 76, 3, 3);
+      // Close dive over Astana: resolve the magnified lights into streets and
+      // pull the gain down so the city core does not clip into a white blob.
+      const city = 1 - THREE.MathUtils.smoothstep(alt, 0.03, 0.08);
+      eu.cityDetail.value = city;
+      eu.lightsGain.value = (3.0 + 1.5 * envelope(t, SCENES.kazakhstan.start, 76, 3, 3)) * (1 - 0.5 * city);
 
       const au = (atmo.material as THREE.ShaderMaterial).uniforms;
       au.sunDir.value.copy(sunDir);
@@ -160,7 +164,7 @@ export const makeEarthWorld = (opts: WorldOptions = {}): WorldFactory => (render
       return {
         ...DEFAULT_POST,
         exposure: 1.0 + 0.55 * nightBoost,
-        bloomStrength: 0.045 + 0.02 * envelope(t, 13, 20, 1, 3),
+        bloomStrength: 0.045 + 0.008 * envelope(t, 13, 20, 1, 3),
         fade: fadeIn * fadeOut,
         seed: Math.round(t * 60),
       };

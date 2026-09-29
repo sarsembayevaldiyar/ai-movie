@@ -6,7 +6,12 @@
   "type": "module",
   "scripts": {
     "studio": "remotion studio",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "assets": "python3 tools/build_assets.py",
+    "soundtrack": "tsx tools/export_timeline.ts tools/timeline.json && python3 tools/make_soundtrack.py tools/timeline.json",
+    "camera-report": "tsx tools/camera_report.ts 0.5",
+    "render:1080": "bash tools/render.sh 1080",
+    "render:4k": "bash tools/render.sh 4k"
   },
   "license": "UNLICENSED",
   "dependencies": {

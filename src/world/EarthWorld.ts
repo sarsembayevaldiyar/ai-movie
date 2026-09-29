@@ -166,7 +166,6 @@ export const makeEarthWorld = (opts: WorldOptions = {}): WorldFactory => (render
         exposure: 1.0 + 0.55 * nightBoost,
         bloomStrength: 0.045 + 0.008 * envelope(t, 13, 20, 1, 3),
         fade: fadeIn * fadeOut,
-        seed: Math.round(t * 60),
       };
     },
     dispose() {

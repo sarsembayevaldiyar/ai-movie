@@ -89,7 +89,8 @@ const FilmRenderer: React.FC<{factory: WorldFactory}> = ({factory}) => {
             const offset = n === 1 ? 0 : ((i + 0.5) / n - 0.5) * SHUTTER;
             world.update(t + offset / fps, aspect);
           },
-          world.postAt(t),
+          // Grain/dither seed = frame index (film time in frames, via fps).
+          {...world.postAt(t), seed: frame},
           samples === 1 ? shutter : undefined,
         );
         if (handle.current !== null) {

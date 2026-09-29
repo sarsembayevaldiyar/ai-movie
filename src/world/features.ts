@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import kazakhstan from '../data/kazakhstan.json';
 import placesData from '../data/places.json';
-import {PAIRS, emissiveForHex} from '../brand';
+import {COLORS, PAIRS, emissiveForHex} from '../brand';
 import {geoToVec3, greatCircle, angleBetween, DEG} from '../math/geo';
 import {mulberry32, gaussian} from '../math/random';
 import {BEATS, TEXT, clamp01, envelope, progress, smoother, easeOutSoft, easeCinema} from '../timeline';
@@ -143,7 +143,7 @@ const createRings = () => {
         start: {value: BEATS.astanaPulse},
         gain: {value: 0},
         colLight: {value: new THREE.Vector3(...emissiveForHex(PAIRS.blue.light))},
-        colWhite: {value: new THREE.Vector3(...emissiveForHex('#ffffff'))},
+        colWhite: {value: new THREE.Vector3(...emissiveForHex(COLORS.white))},
         radius: {value: 0.085},
         pattern: {value: 0},
       },
@@ -297,7 +297,7 @@ export const createFeatures = () => {
     nodePos,
     nodePos.map((_, i) => (i === 0 ? 2.6 : 1.7)),
     nodeBirth,
-    nodePos.map((_, i) => emissiveColor(i === 0 ? '#ffffff' : PAIRS.sky.light, i === 0 ? 3 : 2.2)),
+    nodePos.map((_, i) => emissiveColor(i === 0 ? COLORS.white : PAIRS.sky.light, i === 0 ? 3 : 2.2)),
     7,
   );
   group.add(nodes);
@@ -412,7 +412,7 @@ export const createFeatures = () => {
     goalOrbits.map((o) => o.a.clone().multiplyScalar(o.radius)),
     goalOrbits.map(() => 2.2),
     goalOrbits.map((_, i) => TEXT.t6.in + 0.8 + i * 0.5),
-    goalOrbits.map(() => emissiveColor('#ffffff', 0.35)),
+    goalOrbits.map(() => emissiveColor(COLORS.white, 0.35)),
     13,
   );
   group.add(satellites);
@@ -525,6 +525,7 @@ export const createFeatures = () => {
 
 /** Startup counter shown on screen and used for the constellation (185 -> 2015). */
 export const constellationCount = (t: number) => {
-  const p = easeOutSoft(progress(t, TEXT.t3.in + 0.4, TEXT.t3.in + 4.6));
+  // Settles on the final value ~3 s before T3 leaves (readability >= 2 s).
+  const p = easeOutSoft(progress(t, TEXT.t3.in + 0.4, TEXT.t3.in + 3.4));
   return Math.round(185 + (2015 - 185) * clamp01(p));
 };

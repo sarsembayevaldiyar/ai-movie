@@ -54,6 +54,12 @@ export const srgbToLinear = (c: number): number =>
 export const hexToLinear = (hex: string): [number, number, number] =>
   hexToRgb(hex).map(srgbToLinear) as [number, number, number];
 
+/** CSS rgba() of a brand colour with an alpha, e.g. for mask gradients. */
+export const withAlpha = (hex: string, alpha: number): string => {
+  const [r, g, b] = hexToRgb(hex).map((c) => Math.round(c * 255));
+  return `rgba(${r},${g},${b},${alpha})`;
+};
+
 // Inverse of the ACES fit used in FilmPipeline (Stephen Hill: M_out * RRT(M_in * c)).
 // Emissive elements that must land on an exact brand HEX after tonemapping are
 // fed through this. Out-of-gamut solutions are clamped to >= 0.

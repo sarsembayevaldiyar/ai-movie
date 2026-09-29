@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import * as THREE from 'three';
 import {AbsoluteFill, Img, staticFile, useVideoConfig} from 'remotion';
-import {COLORS, FONT_FAMILY, GLOW_RADIUS_W, GLOW_STOPS, PAIRS, PairName, WEIGHTS} from '../brand';
+import {COLORS, FONT_FAMILY, GLOW_RADIUS_W, GLOW_STOPS, PAIRS, PairName, WEIGHTS, withAlpha} from '../brand';
 import {useFilmTime} from '../FilmTime';
 import {BEATS, TEXT, clamp01, easeCinema, envelope, progress, smoother} from '../timeline';
 import {CameraPath} from '../world/cameraPath';
@@ -64,8 +64,8 @@ const Eyebrow: React.FC<{t: number; start: number; end: number; color: string; c
 
 // Brand "fading headline" (brandbook p. 29, 42-43): opaque at the top, fading down.
 const fadeMask = (from = 0.42, to = 0.18): React.CSSProperties => ({
-  WebkitMaskImage: `linear-gradient(to bottom, #000 ${from * 100}%, rgba(0,0,0,${to}) 100%)`,
-  maskImage: `linear-gradient(to bottom, #000 ${from * 100}%, rgba(0,0,0,${to}) 100%)`,
+  WebkitMaskImage: `linear-gradient(to bottom, ${COLORS.black} ${from * 100}%, ${withAlpha(COLORS.black, to)} 100%)`,
+  maskImage: `linear-gradient(to bottom, ${COLORS.black} ${from * 100}%, ${withAlpha(COLORS.black, to)} 100%)`,
 });
 
 const Headline: React.FC<{t: number; start: number; end: number; size: number; children: React.ReactNode; fade?: boolean}> = ({

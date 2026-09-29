@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import kazakhstan from '../data/kazakhstan.json';
 import placesData from '../data/places.json';
 import {COLORS, PAIRS, emissiveForHex} from '../brand';
+import {LOGO_CLEAR_RECT} from '../layout';
 import {geoToVec3, greatCircle, angleBetween, DEG} from '../math/geo';
 import {mulberry32, gaussian} from '../math/random';
 import {BEATS, TEXT, clamp01, envelope, progress, smoother, easeOutSoft, easeCinema} from '../timeline';
@@ -433,7 +434,14 @@ export const createFeatures = () => {
   };
 
   const update = (t: number, resolution: THREE.Vector2, pixelScale: number) => {
-    for (const m of lineMeshes()) u(m).resolution.value.copy(resolution);
+    // Lines leave the logo clear space before the lockup appears (brandbook p. 11).
+    const clearAmt = smoother(progress(t, BEATS.logo - 0.8, BEATS.logo));
+    for (const m of lineMeshes()) {
+      const uu = u(m);
+      uu.resolution.value.copy(resolution);
+      uu.clearAmt.value = clearAmt;
+      uu.clearRect.value.set(LOGO_CLEAR_RECT.x0, LOGO_CLEAR_RECT.y0, LOGO_CLEAR_RECT.x1, LOGO_CLEAR_RECT.y1);
+    }
     for (const p of pointMeshes) {
       const uu = (p.material as THREE.ShaderMaterial).uniforms;
       uu.time.value = t;

@@ -79,6 +79,8 @@ export const createLineMaterial = (style: LineStyle, depthTest = true) =>
       intensity: {value: style.intensity ?? 1},
       midStop: {value: LINE_STOPS.mid},
       loop: {value: 0}, // closed orbit mode: the head circles, the tail wraps around
+      clearRect: {value: new THREE.Vector4(0, 0, 0, 0)}, // keep-out zone, 1080p px, top-left origin
+      clearAmt: {value: 0},
     },
     vertexShader: /* glsl */ `
       attribute vec3 prev;
@@ -115,6 +117,8 @@ export const createLineMaterial = (style: LineStyle, depthTest = true) =>
     fragmentShader: /* glsl */ `
       uniform vec2 resolution;
       uniform float widthPx, glowPx, glowGain, progress, start, tail, settle, headBoost, intensity, midStop, loop;
+      uniform float clearAmt;
+      uniform vec4 clearRect;
       uniform vec3 colRich, colDark, colLight;
       varying float vU;
       varying float vD;
@@ -142,6 +146,12 @@ export const createLineMaterial = (style: LineStyle, depthTest = true) =>
         float head = exp(-behind * behind * 400.0) * (1.0 - settle);
         col *= 1.0 + head * headBoost;
         float a = (core + glow);
+        if (clearAmt > 0.0) {
+          // Logo clear space: lines fade to nothing at its border (36 px feather).
+          vec2 px = vec2(gl_FragCoord.x, resolution.y - gl_FragCoord.y) / scale;
+          vec2 o = max(clearRect.xy - px, px - clearRect.zw);
+          a *= mix(1.0, smoothstep(0.0, 36.0, max(o.x, o.y)), clearAmt);
+        }
         gl_FragColor = vec4(col * a * intensity, 1.0);
       }
     `,

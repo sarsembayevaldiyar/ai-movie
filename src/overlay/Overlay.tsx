@@ -8,6 +8,7 @@ import {CameraPath} from '../world/cameraPath';
 import {CAMERA_KEYS} from '../world/keyframes';
 import {constellationCount} from '../world/features';
 import {geoToVec3} from '../math/geo';
+import {FINALE_X, LOGO_CENTER_Y, LOGO_H, LOGO_SRC_W, LOGO_W} from '../layout';
 import {mulberry32} from '../math/random';
 import {enter, exit, fadeDrift, lineReveal} from './anim';
 import './fonts';
@@ -18,8 +19,8 @@ import './fonts';
 
 const MARGIN_X = 120;
 const MARGIN_B = 128;
-// Finale column: right of the planet glow, on the dark part of the brand gradient.
-const FINALE_X = 740;
+// Finale column (FINALE_X, src/layout.ts): right of the planet glow, on the dark
+// part of the brand gradient.
 
 const font = (weight: number, size: number, extra: React.CSSProperties = {}): React.CSSProperties => ({
   fontFamily: FONT_FAMILY,
@@ -243,19 +244,17 @@ const Mission: React.FC<{t: number}> = ({t}) => {
 // Logo lockup (brandbook p. 17-18): [sign + "astana hub"] | "Join the unicorn game".
 // Proportions from the PDF: logo 663 x 139 px, gap to the slogan = logo height,
 // slogan Inter Medium at 0.4586 x logo height, vertically centred.
-const LOGO_SRC = 2000; // source image width (px)
-const LOGO_H_SRC = 421;
-const SIGN_END = 406 / LOGO_SRC;
-const WORD_START = 544 / LOGO_SRC;
+const SIGN_END = 406 / LOGO_SRC_W;
+const WORD_START = 544 / LOGO_SRC_W;
 
 const LogoLockup: React.FC<{t: number}> = ({t}) => {
   if (t < BEATS.logo - 0.2) return null;
-  const logoW = 480;
-  const logoH = (logoW * LOGO_H_SRC) / LOGO_SRC; // 101 px
+  const logoW = LOGO_W;
+  const logoH = LOGO_H; // 101 px
   const gap = logoH;
   const sloganSize = 0.4586 * logoH;
   const left = FINALE_X;
-  const top = 470 - logoH / 2;
+  const top = LOGO_CENTER_Y - logoH / 2;
 
   const signIn = enter(t, BEATS.logo, 1.4);
   const wordIn = easeCinema(progress(t, BEATS.logo + 0.55, BEATS.logo + 1.6));
@@ -399,7 +398,9 @@ export const Overlay: React.FC = () => {
       <Theses t={t} />
       <Mission t={t} />
       <LogoLockup t={t} />
-      <Grain t={t} amount={0.07 * smoother(progress(t, 0.5, 2.5))} />
+      {/* No treatment may touch the logo (brandbook p. 13-16): the grain clears
+          while the logo lockup builds, leaving a clean end card. */}
+      <Grain t={t} amount={0.07 * smoother(progress(t, 0.5, 2.5)) * (1 - smoother(progress(t, BEATS.logo - 0.6, BEATS.logo + 0.4)))} />
     </AbsoluteFill>
   );
 };

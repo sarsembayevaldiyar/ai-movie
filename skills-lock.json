@@ -1,11 +1,107 @@
 {
   "version": 1,
   "skills": {
+    "ffmpeg-ops": {
+      "source": "0xdarkmatter/claude-mods",
+      "sourceType": "github",
+      "skillPath": "skills/ffmpeg-ops/SKILL.md",
+      "computedHash": "3376df7af64a74ccc52fadbdfaaa9554c5ef4585199feb3749a1a1dc1142c175"
+    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
       "skillPath": "skills/find-skills/SKILL.md",
       "computedHash": "913b9d37d0d54047dd65222bb8c67b2bf04e3cb87dcad1729068d7a8b2c8c396"
+    },
+    "kinetic-typography": {
+      "source": "iart-ai/kinetic-typography-skills",
+      "sourceType": "github",
+      "skillPath": "skills/kinetic-typography/SKILL.md",
+      "computedHash": "1a59da2f9bf89dcdd23ac35248f7e40ae1586e670a10408edad8728169dfb415"
+    },
+    "motion-art-direction": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/motion-art-direction/SKILL.md",
+      "computedHash": "bcba09b729fd3d99b3b1a388c3aaac655a3771b26dc3e8d077a110dfdd9e1631"
+    },
+    "r3f-fundamentals": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "skillPath": "skills/r3f-fundamentals/SKILL.md",
+      "computedHash": "b2ceee76273a7b3dbfef647ce0b2c7977c65f4a7196daebd0a528252b930fd2e"
+    },
+    "r3f-materials": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "skillPath": "skills/r3f-materials/SKILL.md",
+      "computedHash": "a7f293f7bc09729ca2427bbfa03868a0ecd7aa077147f8ce50396bade9292c37"
+    },
+    "r3f-postprocessing": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "skillPath": "skills/r3f-postprocessing/SKILL.md",
+      "computedHash": "d9423141d99eaa5331d7b94cf82107f13925158e0995dc123bf4179e27a42698"
+    },
+    "r3f-shaders": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "skillPath": "skills/r3f-shaders/SKILL.md",
+      "computedHash": "58004fddf7475598c1cbabc2c892bc4392cf3779bebfbbbe4104cd3b84ccf7be"
+    },
+    "r3f-textures": {
+      "source": "EnzeD/r3f-skills",
+      "sourceType": "github",
+      "skillPath": "skills/r3f-textures/SKILL.md",
+      "computedHash": "80a84fc624aa211f01e922877425af9509addd69b5357075fb0858d249feb49b"
+    },
+    "remotion-best-practices": {
+      "source": "remotion-dev/skills",
+      "sourceType": "github",
+      "skillPath": "skills/remotion-best-practices/SKILL.md",
+      "computedHash": "d515649a7a1ccce362d546e35d9780be2c1425148baf16e8d178cbf1b852ac6d"
+    },
+    "shader-dev": {
+      "source": "MiniMax-AI/skills",
+      "sourceType": "github",
+      "skillPath": "skills/shader-dev/SKILL.md",
+      "computedHash": "169d2cc594e0962e37f1cc58aef6d2efcf78f3408627bd909383d8724a133cd9"
+    },
+    "systematic-debugging": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/systematic-debugging/SKILL.md",
+      "computedHash": "3589907ee34dc8b1b7223a33fac98ab841a9e42f9960ab4433a832f0c6f00be0"
+    },
+    "threejs-atmosphere-aerial-perspective": {
+      "source": "scottstts/Threejs-Awesome-Graphics-Agent-Skills",
+      "sourceType": "github",
+      "skillPath": "skills/threejs-atmosphere-aerial-perspective/SKILL.md",
+      "computedHash": "f62788a0a3901fcb05392d8c3f37f6e5bbbafbdf2bc5f7c2f90d1dcbe8ff44fe"
+    },
+    "threejs-camera-direction": {
+      "source": "scottstts/Threejs-Awesome-Graphics-Agent-Skills",
+      "sourceType": "github",
+      "skillPath": "skills/threejs-camera-direction/SKILL.md",
+      "computedHash": "22a48411250cce9b4fbef643df2128dcb818877f7ae9baa7d3a6bfc57c5cc3da"
+    },
+    "threejs-procedural-fields": {
+      "source": "scottstts/Threejs-Awesome-Graphics-Agent-Skills",
+      "sourceType": "github",
+      "skillPath": "skills/threejs-procedural-fields/SKILL.md",
+      "computedHash": "d49a68c353a2cf648b58fa45955527a0a7178e92410215474d76af29a3f53284"
+    },
+    "threejs-scene-composition": {
+      "source": "calesthio/generative-media-skills",
+      "sourceType": "github",
+      "skillPath": "skills/production/runtime-assembly/threejs-scene-composition/SKILL.md",
+      "computedHash": "e8fb13a26ffa58664c45bf2a6f88661876b7358be3aa44db768463b5722a29cd"
+    },
+    "verification-before-completion": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/verification-before-completion/SKILL.md",
+      "computedHash": "b529822bdac4b197b180fe12225cff86b930b65910435103c10622df7f041651"
     }
   }
 }

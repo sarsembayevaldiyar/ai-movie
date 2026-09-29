@@ -25,6 +25,24 @@ Project skills live in `.claude/skills/` (installed via the `skills` CLI; the li
 | Skill | Source | When to use |
 |---|---|---|
 | `find-skills` | `vercel-labs/skills` | Before any new complex task: search for specialized skills (`npx skills find <query>`, `npx skills add <owner/repo> --list`). |
+| `remotion-best-practices` | `remotion-dev/skills` | Any Remotion code: router to markup (3D, motion blur, effects, fonts, timing, audio, ffmpeg), render and other sub-guides. |
+| `r3f-fundamentals`, `r3f-shaders`, `r3f-postprocessing`, `r3f-textures`, `r3f-materials` | `EnzeD/r3f-skills` | R3F scene setup, GLSL materials and uniforms, post chain order (bloom → tonemap), texture color spaces. |
+| `threejs-atmosphere-aerial-perspective` | `scottstts/Threejs-Awesome-Graphics-Agent-Skills` | Earth atmosphere: limb glow, sun transmittance, Rayleigh/Mie. |
+| `threejs-camera-direction` | `scottstts/Threejs-Awesome-Graphics-Agent-Skills` | Authored cinematic camera, planet-scale framing, near/far per shot, handoffs. |
+| `threejs-procedural-fields` | `scottstts/Threejs-Awesome-Graphics-Agent-Skills` | Cloud/ocean/city-light masks, nebula noise fields. |
+| `threejs-scene-composition` | `calesthio/generative-media-skills` | Deterministic frame rendering of Three.js for video, render QA. |
+| `shader-dev` | `MiniMax-AI/skills` | GLSL technique library: noise, starfields, scattering, grain, AA. |
+| `motion-art-direction`, `kinetic-typography` | `iart-ai/*` | Motion language spec, typography reveals and stagger. |
+| `ffmpeg-ops` | `0xdarkmatter/claude-mods` | Encoding, concat, loudness (-14 LUFS), CFR/VFR probing. |
+| `verification-before-completion`, `systematic-debugging` | `obra/superpowers` | Evidence before "done"; root-cause debugging. |
+
+Project overrides for these skills (they win over the skill text):
+- Rendering from the CLI is explicitly requested by the user (final deliverables). Remotion Studio is not used (no browser here).
+- The Kazakhstan border and the globe are drawn in three.js shaders, not with Remotion Maps / Mapbox.
+- Headless Chrome: use the preinstalled `/opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_shell`
+  (`remotion.media` is blocked, so Remotion cannot download its own browser). No GPU: WebGL runs on SwiftShader (`--gl=swangle`).
+- Docs hosts `remotion.dev` and `threejs.org` are blocked; read sources/docs via `raw.githubusercontent.com` or `node_modules`.
+- Time in shaders always comes from the Remotion frame (`frame / fps`), never from `useFrame` delta or the clock.
 
 Rules for using skills:
 - Read the `SKILL.md` of a skill before working in its domain and follow it.

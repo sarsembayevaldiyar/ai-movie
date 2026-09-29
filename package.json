@@ -11,7 +11,9 @@
     "soundtrack": "tsx tools/export_timeline.ts tools/timeline.json && python3 tools/make_soundtrack.py tools/timeline.json",
     "camera-report": "tsx tools/camera_report.ts 0.5",
     "render:1080": "bash tools/render.sh 1080",
-    "render:4k": "bash tools/render.sh 4k"
+    "render:4k": "bash tools/render.sh 4k",
+    "qa:motion": "python3 tools/qa_motion.py out/astanahub_universe_1080p60.mp4 60 out/qa_motion",
+    "qa:stills": "python3 tools/qa_stills.py out/astanahub_universe_1080p60.mp4 docs/qa"
   },
   "license": "UNLICENSED",
   "dependencies": {

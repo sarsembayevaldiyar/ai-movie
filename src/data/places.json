@@ -1,0 +1,125 @@
+{
+ "source": "Natural Earth 1:10m Populated Places Simple (public domain)",
+ "places": {
+  "astana": {
+   "name": "Nur-Sultan",
+   "lon": 71.4278,
+   "lat": 51.1811
+  },
+  "uralsk": {
+   "name": "Oral",
+   "lon": 51.335,
+   "lat": 51.2711
+  },
+  "atyrau": {
+   "name": "Atyrau",
+   "lon": 51.92,
+   "lat": 47.1127
+  },
+  "aktau": {
+   "name": "Aqtau",
+   "lon": 51.2365,
+   "lat": 43.6232
+  },
+  "aktobe": {
+   "name": "Aqtobe",
+   "lon": 57.17,
+   "lat": 50.28
+  },
+  "kostanay": {
+   "name": "Oostanay",
+   "lon": 63.6283,
+   "lat": 53.2209
+  },
+  "petropavl": {
+   "name": "Petropavlovsk",
+   "lon": 69.22,
+   "lat": 54.88
+  },
+  "kokshetau": {
+   "name": "Kokshetau",
+   "lon": 69.42,
+   "lat": 53.3
+  },
+  "pavlodar": {
+   "name": "Pavlodar",
+   "lon": 76.95,
+   "lat": 52.3
+  },
+  "karaganda": {
+   "name": "Qaraghandy",
+   "lon": 73.115,
+   "lat": 49.885
+  },
+  "zhezkazgan": {
+   "name": "Zhezqazghan",
+   "lon": 67.77,
+   "lat": 47.78
+  },
+  "kyzylorda": {
+   "name": "Qyzylorda",
+   "lon": 65.465,
+   "lat": 44.8
+  },
+  "turkistan": {
+   "name": "Turkistan",
+   "lon": 68.2549,
+   "lat": 43.3016
+  },
+  "shymkent": {
+   "name": "Shymkent",
+   "lon": 69.595,
+   "lat": 42.32
+  },
+  "taraz": {
+   "name": "Taraz",
+   "lon": 71.365,
+   "lat": 42.9
+  },
+  "konaev": {
+   "name": "Qapshaghay",
+   "lon": 77.0687,
+   "lat": 43.8844
+  },
+  "taldykorgan": {
+   "name": "Taldyqorghan",
+   "lon": 78.4,
+   "lat": 45.0
+  },
+  "almaty": {
+   "name": "Almaty",
+   "lon": 76.9131,
+   "lat": 43.3269
+  },
+  "semey": {
+   "name": "Semey",
+   "lon": 80.275,
+   "lat": 50.435
+  },
+  "oskemen": {
+   "name": "Oskemen",
+   "lon": 82.6149,
+   "lat": 49.99
+  },
+  "paloalto": {
+   "name": "San Jose",
+   "lon": -121.8882,
+   "lat": 37.3309
+  },
+  "shanghai": {
+   "name": "Shanghai",
+   "lon": 121.4346,
+   "lat": 31.2184
+  },
+  "dubai": {
+   "name": "Dubai",
+   "lon": 55.2869,
+   "lat": 25.2149
+  },
+  "kualalumpur": {
+   "name": "Kuala Lumpur",
+   "lon": 101.6887,
+   "lat": 3.1398
+  }
+ }
+}

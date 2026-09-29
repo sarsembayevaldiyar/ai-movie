@@ -3,3 +3,4 @@ out/
 .remotion/
 *.log
 .DS_Store
+.asset-cache/

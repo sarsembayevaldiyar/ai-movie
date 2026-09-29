@@ -1,0 +1,29 @@
+{
+  "name": "astanahub-universe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Astana Hub image video built entirely from code (Remotion + three.js, 60 fps)",
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio",
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@react-three/fiber": "9.8.1",
+    "@remotion/cli": "4.0.530",
+    "@remotion/fonts": "4.0.530",
+    "@remotion/media": "4.0.530",
+    "@remotion/three": "4.0.530",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.530",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "@types/three": "0.180.0",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
+  }
+}

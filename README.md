@@ -9,8 +9,8 @@
 ## Результат
 | Файл | Что это |
 |---|---|
-| `out/astanahub_universe_1080p60.mp4` | Финальная версия: H.264 High 4.2, CRF 14, `veryslow`, yuv420p, BT.709, AAC 320 кбит/с, 48 кГц, faststart |
-| `out/render_1080p60/astanahub_universe_1080p60_master_prores.mov` | Мастер: ProRes 422 HQ + PCM 24 бит / 48 кГц |
+| `out/astanahub_universe_1080p60.mp4` | Финальная версия (119 МБ): H.264 High 4.2, CRF 14, `veryslow`, yuv420p, BT.709, AAC 320 кбит/с, 48 кГц, −14,4 LUFS, faststart |
+| `out/render_1080p60/astanahub_universe_1080p60_master_prores.mov` | Мастер (4,6 ГБ): ProRes 422 HQ + PCM 24 бит / 48 кГц |
 | `public/audio/soundtrack.wav` | Саундтрек отдельно: 48 кГц / 24 бит, −14 LUFS, true peak ≤ −1 dBTP |
 
 Папка `out/` не хранится в git. Видео пересобирается командами ниже.
@@ -37,7 +37,11 @@ npm run qa:stills       # контрольные кадры по сценам �
 npm run typecheck
 ```
 
-`remotion.config.ts` настроен на облачный контейнер без GPU: браузер — предустановленный headless shell, WebGL — через SwiftShader (`swangle`). На машине с видеокартой рендер идёт в разы быстрее. Для этого замените `setBrowserExecutable` на свой Chrome и выставьте `setChromiumOpenGlRenderer('angle')`.
+`remotion.config.ts` сам выбирает окружение. В облачном контейнере без GPU он берёт предустановленный headless shell и WebGL через SwiftShader (`swangle`). На обычной машине он использует Chrome, который скачивает Remotion, и GPU (`angle`). Переопределить можно переменными `REMOTION_BROWSER` и `REMOTION_GL`.
+
+Если среда перезапускает долгие процессы, рендер и кодирование можно разбить на части. Каждая часть возобновляется с места остановки:
+- `tools/render_parts.sh <первый_кадр>` рендерит 10-секундный чанк кусками по 2,5 с;
+- `tools/encode_parts.sh` кодирует H.264 по чанкам, склеивает их без перекодирования, добавляет звук и собирает мастер.
 
 ## Структура
 ```

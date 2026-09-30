@@ -1,0 +1,5 @@
+frames: 5400 @ 60.0 fps
+MAD median 0.00394, max 0.01590
+spikes (MAD > 3.5x local median): 0
+freezes (MAD < 0.2x local median while moving): 0
+luminance flicker events (|d2 lum| > 0.012): 0

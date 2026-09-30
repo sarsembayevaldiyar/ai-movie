@@ -50,18 +50,18 @@ if [[ "$MODE" == "1080" ]]; then
   $FFMPEG -hide_banner -y -i "$OUT/astanahub_universe_${TAG}_master_prores.mov" \
     -c:v libx264 -preset veryslow -crf 14 -pix_fmt yuv420p -profile:v high -level 4.2 \
     -color_primaries bt709 -color_trc bt709 -colorspace bt709 -r 60 -fps_mode cfr \
-    -c:a aac -b:a 320k -ar 48000 -movflags +faststart out/astanahub_universe_1080p60.mp4
+    -af volume=-0.3dB -c:a aac -b:a 320k -ar 48000 -movflags +faststart out/astanahub_universe_1080p60.mp4
 else
   echo "== H.264 4K60 (crf 16, slow)"
   $FFMPEG -hide_banner -y -i "$OUT/astanahub_universe_${TAG}_master_prores.mov" \
     -c:v libx264 -preset slow -crf 16 -pix_fmt yuv420p -profile:v high -level 5.2 \
     -color_primaries bt709 -color_trc bt709 -colorspace bt709 -r 60 -fps_mode cfr \
-    -c:a aac -b:a 320k -ar 48000 -movflags +faststart out/astanahub_universe_4k60.mp4
+    -af volume=-0.3dB -c:a aac -b:a 320k -ar 48000 -movflags +faststart out/astanahub_universe_4k60.mp4
   echo "== 1080p60 from the 4K master (Lanczos, 4 samples per pixel)"
   $FFMPEG -hide_banner -y -i "$OUT/astanahub_universe_${TAG}_master_prores.mov" \
     -vf "scale=1920:1080:flags=lanczos+accurate_rnd+full_chroma_int" \
     -c:v libx264 -preset veryslow -crf 14 -pix_fmt yuv420p -profile:v high -level 4.2 \
     -color_primaries bt709 -color_trc bt709 -colorspace bt709 -r 60 -fps_mode cfr \
-    -c:a aac -b:a 320k -ar 48000 -movflags +faststart out/astanahub_universe_1080p60.mp4
+    -af volume=-0.3dB -c:a aac -b:a 320k -ar 48000 -movflags +faststart out/astanahub_universe_1080p60.mp4
 fi
 echo "== done"

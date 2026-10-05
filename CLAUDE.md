@@ -37,11 +37,14 @@ Project skills live in `.claude/skills/` (installed via the `skills` CLI; the li
 | `verification-before-completion`, `systematic-debugging` | `obra/superpowers` | Evidence before "done"; root-cause debugging. |
 
 Project overrides for these skills (they win over the skill text):
-- Rendering from the CLI is explicitly requested by the user (final deliverables). Remotion Studio is not used (no browser here).
+- Final deliverables are rendered from the CLI (`npm run render:1080`). Remotion Studio (`npm run studio`) is fine for previews on a local machine.
 - The Kazakhstan border and the globe are drawn in three.js shaders, not with Remotion Maps / Mapbox.
-- Headless Chrome: use the preinstalled `/opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_shell`
-  (`remotion.media` is blocked, so Remotion cannot download its own browser). No GPU: WebGL runs on SwiftShader (`--gl=swangle`).
-- Docs hosts `remotion.dev` and `threejs.org` are blocked; read sources/docs via `raw.githubusercontent.com` or `node_modules`.
+- Browser / GPU: `remotion.config.ts` picks them automatically. On a local machine Remotion downloads its own Chrome
+  and WebGL uses the GPU (`angle`). Override with `REMOTION_BROWSER` / `REMOTION_GL`.
+- Cloud container only (Claude Code on the web): no GPU. The config then uses the preinstalled
+  `/opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_shell` with SwiftShader (`swangle`), at ~2-3 s per 1080p frame.
+  There `remotion.dev` / `threejs.org` may be blocked: read docs via `raw.githubusercontent.com` or `node_modules`.
+  If the container restarts long jobs, use `tools/render_parts.sh` and `tools/encode_parts.sh`.
 - Time in shaders always comes from the Remotion frame (`frame / fps`), never from `useFrame` delta or the clock.
 
 Rules for using skills:
